@@ -2,17 +2,19 @@ version: "3"
 services:
   app:
     image: python:latest
-    expose: 8001
+    expose: 
+      - 8001
     command: >
      /bin/bash -c "cd /app
      && python -m http.server 8001"
     volumes:
       - ./:/app
+
   nginx:
     image: nginx:1.15-alpine
     restart: unless-stopped
     volumes:
-      - ./data/nginx:/etc/nginx/conf.d
+      - ./nginx:/etc/nginx/conf.d
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     ports:
