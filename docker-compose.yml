@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  app:
+    image: python:latest
+    ports:
+      - "8001:8001"
+    command: >
+     /bin/bash -c "cd /app
+     && python -m http.server 8001"
+    volumes:
+      - ./:/app
